@@ -5,7 +5,7 @@
 epic = "demo"
 epic_issue = "arisport/dispatch-demo#1"
 round_cap = 2
-order = ["arisport/dispatch-demo#8"]
+order = ["arisport/dispatch-demo#10"]
 
 [thresholds]
 stall_hours = 1

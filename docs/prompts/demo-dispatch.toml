@@ -1,0 +1,40 @@
+# The demo epic's config (atlas#2356; design §1a). `demo setup` (PR B) commits it to the demo repo as
+# docs/prompts/demo-dispatch.toml on release/demo, with `epic_issue` set to the epic's own issue,
+# `order` to that run's fresh issue and `milestone` to the milestone `demo`. relay6 only, with no
+# per-ticket [trial] override: the demo refuses anything else.
+epic = "demo"
+epic_issue = "arisport/dispatch-demo#1"
+round_cap = 2
+order = ["arisport/dispatch-demo#2"]
+
+[thresholds]
+stall_hours = 1
+ci_retry_minutes = 15
+
+[paths]
+records = []
+copy = []
+
+[sandbox]
+allowed_domains = ["github.com"]   # required non-empty; unused by the fake
+
+[caps]
+turn_tokens_alert = 0
+epic_tokens_alert = 0
+
+[trial]
+default = "relay6"
+
+[[repo]]
+name = "arisport/dispatch-demo"
+role = "demo"
+milestone = 1
+release_branch = "release/demo"
+test_jobs = ["test"]               # the demo repo's one CI job, which runs `true`
+prose_only_skips_ci = false
+
+[repo.prompts]                     # one-line stubs on the release branch: the fake reads no prompt
+builder = "docs/prompts/demo-delivery.md"
+reviewer = "docs/prompts/demo-code-review.md"
+remediation = "docs/prompts/demo-review-remediation.md"
+orchestrator = "docs/prompts/demo-orchestrator.md"
